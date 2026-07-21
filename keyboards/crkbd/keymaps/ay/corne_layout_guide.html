@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide de Configuration Corne - Ay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #151d30;
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.15);
+            --accent-mc: #8b5cf6;
+            --accent-ht: #06b6d4;
+            --accent-sf: #ef4444;
+            --accent-pg: #f97316;
+            --accent-ds: #ea580c;
+            --accent-ac: #8b5cf6;
+            --accent-fn: #10b981;
+            --key-bg: #1e293b;
+            --key-border: #334155;
+            --key-text: #f8fafc;
+            --key-active: #3b82f6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid #1e293b;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 0.75rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Keyboard layout styles */
+        .keyboard {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .half {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            background-color: #0f172a;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--key-border);
+            width: 49.5%;
+        }
+
+        .row {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .row-thumbs {
+            margin-top: 0.5rem;
+            justify-content: flex-end;
+            padding-right: 1.5rem;
+        }
+
+        .half-right .row-thumbs {
+            justify-content: flex-start;
+            padding-left: 1.5rem;
+            padding-right: 0;
+        }
+
+        .key {
+            width: 45px;
+            height: 45px;
+            background-color: var(--key-bg);
+            border: 1px solid var(--key-border);
+            border-bottom-width: 3px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--key-text);
+            cursor: default;
+            transition: all 0.1s ease;
+        }
+
+        /* 4-Way keycap visualization */
+        .key-4way {
+            width: 76px;
+            height: 76px;
+            background-color: var(--key-bg);
+            border: 1px solid var(--key-border);
+            border-bottom-width: 4px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            padding: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            position: relative;
+            transition: all 0.1s ease;
+        }
+
+        .key-4way .corner {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .key-4way .tl { justify-content: flex-start; align-items: flex-start; color: #60a5fa; font-weight: 800; font-size: 0.8rem; } /* L0 Base AY */
+        .key-4way .tr { justify-content: flex-end; align-items: flex-start; color: #94a3b8; } /* L1 Base AZ */
+        .key-4way .bl { justify-content: flex-start; align-items: flex-end; color: #c084fc; }  /* L2 Symboles */
+        .key-4way .br { justify-content: flex-end; align-items: flex-end; color: #fb923c; }  /* L3 Chiffres */
+
+        .key-4way.thumb {
+            background-color: #1e293b;
+            border-color: #475569;
+        }
+
+        .key-4way.special-key {
+            background-color: #0f172a;
+            border-color: #3b82f6;
+        }
+
+        /* Tactile Key Highlight */
+        .key.pressed, .key-4way.pressed {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa) !important;
+            color: #ffffff !important;
+            border-color: #60a5fa !important;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8) !important;
+            transform: translateY(2px);
+            border-bottom-width: 1px !important;
+        }
+
+        .key.unused, .key-4way.unused {
+            opacity: 0.25;
+            background-color: #020617;
+            border-color: #0f172a;
+            color: #475569;
+        }
+
+        .key.zqsd {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6);
+            border-color: #8b5cf6;
+            color: #ffffff;
+            box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
+        }
+
+        .key.modifier {
+            background-color: #334155;
+            border-color: #475569;
+            color: #ffffff;
+        }
+
+        .key.esc {
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        .key.selector {
+            background-color: #1e293b;
+            border-color: #475569;
+            font-weight: 800;
+        }
+
+        .key.active-sel {
+            background-color: #f8fafc;
+            color: #0f172a;
+            border-color: #e2e8f0;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .key.accent-vow {
+            background-color: var(--accent-ac);
+            border-color: #7c3aed;
+            color: #ffffff;
+        }
+
+        .key.fn-key {
+            background-color: var(--accent-fn);
+            border-color: #059669;
+            color: #ffffff;
+        }
+
+        /* Game color tags */
+        .color-tag {
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            display: inline-block;
+        }
+        .tag-mc { background-color: var(--accent-mc); }
+        .tag-ht { background-color: var(--accent-ht); }
+        .tag-sf { background-color: var(--accent-sf); }
+        .tag-pg { background-color: var(--accent-pg); }
+        .tag-ds { background-color: var(--accent-ds); }
+        .tag-ac { background-color: var(--accent-ac); }
+        .tag-fn { background-color: var(--accent-fn); }
+
+        .key.mc { background-color: var(--accent-mc); border-color: #16a34a; }
+        .key.ht { background-color: var(--accent-ht); border-color: #0891b2; }
+        .key.sf { background-color: var(--accent-sf); border-color: #dc2626; }
+        .key.pg { background-color: var(--accent-pg); border-color: #ea580c; }
+        .key.ds { background-color: var(--accent-ds); border-color: #c2410c; }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #0f172a;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+
+        /* Printable styles */
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+                padding: 0;
+            }
+            .section {
+                background-color: #ffffff;
+                border: 1px solid #cbd5e1;
+                box-shadow: none;
+                page-break-inside: avoid;
+                margin-bottom: 2rem;
+                padding: 1.5rem;
+            }
+            .half {
+                background-color: #f8fafc;
+                border: 1px solid #cbd5e1;
+            }
+            .key, .key-4way {
+                background-color: #ffffff;
+                border-color: #94a3b8;
+                color: #000000;
+            }
+            .key.unused, .key-4way.unused {
+                opacity: 0.15;
+            }
+            .key.zqsd {
+                background: #e2e8f0;
+                border-color: #475569;
+                color: #000000;
+                font-weight: 800;
+            }
+            header h1 {
+                background: none;
+                -webkit-text-fill-color: #000000;
+                color: #000000;
+            }
+            .legend {
+                background-color: #f8fafc;
+                border: 1px solid #e2e8f0;
+            }
+            .key-4way .tl { color: #1d4ed8; }
+            .key-4way .tr { color: #475569; }
+            .key-4way .bl { color: #7e22ce; }
+            .key-4way .br { color: #c2410c; }
+        }
+
+        /* Mode Selector & Live Feedback Styles */
+        .layout-control-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            margin: 1.5rem 0;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .selector-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .selector-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .segmented-control {
+            display: flex;
+            background-color: #0f172a;
+            padding: 3px;
+            border-radius: 8px;
+            border: 1px solid var(--key-border);
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.5rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .control-btn:hover {
+            color: var(--text-color);
+        }
+
+        .control-btn.active {
+            background-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+        }
+
+        .live-feedback {
+            display: flex;
+            align-items: center;
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--key-border);
+            padding: 0.5rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            min-height: 42px;
+            flex-grow: 1;
+            max-width: 480px;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .feedback-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #10b981;
+        }
+
+        .pulse-dot.typing {
+            background-color: #3b82f6;
+            box-shadow: 0 0 10px #3b82f6;
+            animation: pulse-animation 1s infinite alternate;
+        }
+
+        @keyframes pulse-animation {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.3); opacity: 1; }
+        }
+
+        .feedback-details {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(2px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback-code {
+            color: var(--text-color);
+            background-color: #1e293b;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .feedback-val {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Dynamic Visual Mode Styles for 4-way Keycaps */
+        body.mode-ay .key-4way .tl {
+            font-size: 0.95rem;
+            color: #60a5fa;
+            font-weight: 800;
+            opacity: 1;
+            transform: scale(1.1);
+            transition: all 0.2s ease;
+        }
+        body.mode-ay .key-4way .tr {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            opacity: 0.35;
+            transition: all 0.2s ease;
+        }
+
+        body.mode-azerty .key-4way .tr {
+            font-size: 0.95rem;
+            color: #38bdf8;
+            font-weight: 800;
+            opacity: 1;
+            transform: scale(1.1);
+            transition: all 0.2s ease;
+        }
+        body.mode-azerty .key-4way .tl {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            opacity: 0.35;
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fa-solid fa-keyboard" style="margin-right: 0.5rem;"></i> Configuration Corne Keyboard</h1>
+        <p>Disposition "Ay" interactive avec test de touches en temps réel</p>
+    </header>
+
+    <div class="container">
+
+        <!-- SECTION 0: CARTE MULTI-COUCHES COMBINÉE (4 COINS PAR TOUCHE) -->
+        <div class="section">
+            <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Carte Multi-Calques Combinée (Calques 0, 1, 2, 3)</h2>
+            <p><strong>Test de touche actif :</strong> Tapez sur votre clavier physique pour allumer instantanément la touche correspondante ci-dessous en <span style="color: var(--primary); font-weight: bold;">Bleu</span> !</p>
+            
+            <!-- Selector and Live Feedback -->
+            <div class="layout-control-panel">
+                <div class="selector-group">
+                    <span class="selector-label"><i class="fa-solid fa-toggle-on"></i> Mode Actif du Clavier :</span>
+                    <div class="segmented-control">
+                        <button class="control-btn active" id="btn-mode-ay" onclick="setMode('ay')">AY (Calque 0)</button>
+                        <button class="control-btn" id="btn-mode-azerty" onclick="setMode('azerty')">AZERTY (Calque 1)</button>
+                    </div>
+                </div>
+                <div class="live-feedback" id="live-feedback">
+                    <div class="feedback-indicator" id="feedback-status">
+                        <span class="pulse-dot"></span> Prêt à tester
+                    </div>
+                    <div class="feedback-details" id="feedback-details" style="display: none;">
+                        <span class="feedback-code">Physique : <strong id="feedback-key-code">-</strong></span>
+                        <span class="feedback-val">AY : <strong id="feedback-val-ay" style="color: #60a5fa;">-</strong></span>
+                        <span class="feedback-val">AZ : <strong id="feedback-val-azerty" style="color: #38bdf8;">-</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend" style="margin-bottom: 1.5rem;">
+                <div class="legend-item"><div class="legend-color" style="background-color: #60a5fa;"></div> <span><strong>Haut-Gauche (Bleu) :</strong> Calque 0 - Base Perso (AY)</span></div>
+                <div class="legend-item"><div class="legend-color" style="background-color: #94a3b8;"></div> <span><strong>Haut-Droite (Gris) :</strong> Calque 1 - Base AZERTY</span></div>
+                <div class="legend-item"><div class="legend-color" style="background-color: #c084fc;"></div> <span><strong>Bas-Gauche (Mauve) :</strong> Calque 2 - Symboles</span></div>
+                <div class="legend-item"><div class="legend-color" style="background-color: #fb923c;"></div> <span><strong>Bas-Droite (Orange) :</strong> Calque 3 - Chiffres &amp; Accents</span></div>
+                <div class="legend-item"><span style="font-family: monospace; font-weight: bold; color: #f1f5f9; padding: 0 4px;">▽</span> <span>Touche héritée (Transparente)</span></div>
+                <div class="legend-item"><span style="font-family: monospace; color: #475569;">•</span> <span>Touche non configurée (Vide)</span></div>
+            </div>
+
+            <div class="info-box">
+                <i class="fa-solid fa-circle-info"></i> <strong>Raccourcis Système Utiles :</strong><br>
+                * Maintenez les deux pouces (<code>L2/Alt</code> + <code>L3/Alt</code>) pour les <strong>Accents (Layer 7)</strong>.<br>
+                * Maintenez la touche Entrée du pouce gauche (<code>L8/ENT</code>) pour les <strong>Contrôles Système &amp; Medias (Layer 8)</strong>.
+            </div>
+
+            <div class="keyboard" style="gap: 0.5rem;">
+                <!-- Left Half -->
+                <div class="half half-left" style="width: 50%; padding: 0.6rem; gap: 0.4rem;">
+                    <!-- Row 0 -->
+                    <div class="row" style="gap: 0.4rem;">
+                        <div class="key-4way" data-code="Tab"><div class="corner tl"><i class="fa-solid fa-indent"></i></div><div class="corner tr"><i class="fa-solid fa-indent"></i></div><div class="corner bl">TG4</div><div class="corner br">²</div></div>
+                        <div class="key-4way" data-code="KeyQ"><div class="corner tl">Q</div><div class="corner tr">A</div><div class="corner bl">`</div><div class="corner br">°</div></div>
+                        <div class="key-4way" data-code="KeyW"><div class="corner tl">C</div><div class="corner tr">Z</div><div class="corner bl">"</div><div class="corner br">ç</div></div>
+                        <div class="key-4way" data-code="KeyE"><div class="corner tl">O</div><div class="corner tr">E</div><div class="corner bl">{</div><div class="corner br">^</div></div>
+                        <div class="key-4way" data-code="KeyR"><div class="corner tl">P</div><div class="corner tr">R</div><div class="corner bl">}</div><div class="corner br">`</div></div>
+                        <div class="key-4way" data-code="KeyT"><div class="corner tl">W</div><div class="corner tr">T</div><div class="corner bl">•</div><div class="corner br">TG4</div></div>
+                    </div>
+                    <!-- Row 1 -->
+                    <div class="row" style="gap: 0.4rem;">
+                        <div class="key-4way" data-code="Escape"><div class="corner tl"><i class="fa-solid fa-arrow-right-from-bracket"></i></div><div class="corner tr"><i class="fa-solid fa-arrow-right-from-bracket"></i></div><div class="corner bl"><i class="fa-solid fa-copy"></i></div><div class="corner br">£</div></div>
+                        <div class="key-4way" data-code="KeyA"><div class="corner tl">A</div><div class="corner tr">Q</div><div class="corner bl">€</div><div class="corner br">à</div></div>
+                        <div class="key-4way" data-code="KeyS"><div class="corner tl">S</div><div class="corner tr">S</div><div class="corner bl">$</div><div class="corner br">è</div></div>
+                        <div class="key-4way" data-code="KeyD"><div class="corner tl">E</div><div class="corner tr">D</div><div class="corner bl">[</div><div class="corner br">é</div></div>
+                        <div class="key-4way" data-code="KeyF"><div class="corner tl">N</div><div class="corner tr">F</div><div class="corner bl">]</div><div class="corner br">~</div></div>
+                        <div class="key-4way" data-code="KeyG"><div class="corner tl">F</div><div class="corner tr">G</div><div class="corner bl"><i class="fa-solid fa-paste"></i></div><div class="corner br">μ</div></div>
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="row" style="gap: 0.4rem;">
+                        <div class="key-4way unused" data-code="ShiftLeft"><div class="corner tl">•</div><div class="corner tr"><i class="fa-solid fa-arrow-up"></i></div><div class="corner bl">•</div><div class="corner br">•</div></div>
+                        <div class="key-4way" data-code="KeyZ"><div class="corner tl">Z</div><div class="corner tr">W</div><div class="corner bl">\</div><div class="corner br">•</div></div>
+                        <div class="key-4way" data-code="KeyX"><div class="corner tl">X</div><div class="corner tr">X</div><div class="corner bl">/</div><div class="corner br">•</div></div>
+                        <div class="key-4way" data-code="KeyC"><div class="corner tl">.</div><div class="corner tr">C</div><div class="corner bl">|</div><div class="corner br">•</div></div>
+                        <div class="key-4way" data-code="KeyV"><div class="corner tl">V</div><div class="corner tr">V</div><div class="corner bl">&amp;</div><div class="corner br">•</div></div>
+                        <div class="key-4way" data-code="KeyB"><div class="corner tl">B</div><div class="corner tr">B</div><div class="corner bl">*</div><div class="corner br">§</div></div>
+                    </div>
+                    <!-- Thumbs -->
+                    <div class="row row-thumbs" style="gap: 0.4rem;">
+                        <div class="key-4way thumb" data-code="ShiftLeft"><div class="corner tl"><i class="fa-solid fa-arrow-up"></i></div><div class="corner tr"><i class="fa-solid fa-arrow-up"></i></div><div class="corner bl">▽</div><div class="corner br">▽</div></div>
+                        <div class="key-4way thumb special-key" data-code="AltLeft"><div class="corner tl">L2</div><div class="corner tr">L2</div><div class="corner bl">▽</div><div class="corner br">▽</div></div>
+                        <div class="key-4way thumb" data-code="Enter"><div class="corner tl">L8/ENT</div><div class="corner tr">L8/ENT</div><div class="corner bl">▽</div><div class="corner br">▽</div></div>
+                    </div>
+                </div>
+
+                <!-- Right Half -->
+                <div class="half half-right" style="width: 50%; padding: 0.6rem; gap: 0.4rem;">
+                    <!-- Row 0 -->
+                    <div class="row" style="gap: 0.4rem;">
+                        <div class="key-4way" data-code="KeyY"><div class="corner tl">J</div><div class="corner tr">Y</div><div class="corner bl">•</div><div class="corner br">7</div></div>
+                        <div class="key-4way" data-code="KeyU"><div class="corner tl">M</div><div class="corner tr">U</div><div class="corner bl">&lt;</div><div class="corner br">8</div></div>
+                        <div class="key-4way" data-code="KeyI"><div class="corner tl">D</div><div class="corner tr">I</div><div class="corner bl">&gt;</div><div class="corner br">9</div></div>
+                        <div class="key-4way" data-code="KeyO"><div class="corner tl">!</div><div class="corner tr">O</div><div class="corner bl">;</div><div class="corner br">,</div></div>
+                        <div class="key-4way" data-code="KeyP"><div class="corner tl">Y</div><div class="corner tr">P</div><div class="corner bl">•</div><div class="corner br">^</div></div>
+                        <div class="key-4way" data-code="Backspace"><div class="corner tl"><i class="fa-solid fa-delete-left"></i></div><div class="corner tr"><i class="fa-solid fa-delete-left"></i></div><div class="corner bl">•</div><div class="corner br">/</div></div>
+                    </div>
+                    <!-- Row 1 -->
+                    <div class="row" style="gap: 0.4rem;">
+                        <div class="key-4way" data-code="KeyH"><div class="corner tl">L</div><div class="corner tr">H</div><div class="corner bl">•</div><div class="corner br">4</div></div>
+                        <div class="key-4way" data-code="KeyJ"><div class="corner tl">R</div><div class="corner tr">J</div><div class="corner bl">(</div><div class="corner br">5</div></div>
+                        <div class="key-4way" data-code="KeyK"><div class="corner tl">T</div><div class="corner tr">K</div><div class="corner bl">)</div><div class="corner br">6</div></div>
+                        <div class="key-4way" data-code="KeyL"><div class="corner tl">I</div><div class="corner tr">L</div><div class="corner bl">•</div><div class="corner br">¨</div></div>
+                        <div class="key-4way" data-code="Semicolon"><div class="corner tl">U</div><div class="corner tr">M</div><div class="corner bl">_</div><div class="corner br">ù</div></div>
+                        <div class="key-4way" data-code="Enter"><div class="corner tl"><i class="fa-solid fa-reply"></i></div><div class="corner tr"><i class="fa-solid fa-reply"></i></div><div class="corner bl">•</div><div class="corner br">*</div></div>
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="row" style="gap: 0.4rem;">
+                        <div class="key-4way unused" data-code="KeyN"><div class="corner tl">•</div><div class="corner tr">TG5</div><div class="corner bl">!</div><div class="corner br">1</div></div>
+                        <div class="key-4way" data-code="KeyM"><div class="corner tl">H</div><div class="corner tr">N</div><div class="corner bl">=</div><div class="corner br">2</div></div>
+                        <div class="key-4way" data-code="Comma"><div class="corner tl">G</div><div class="corner tr">,</div><div class="corner bl">•</div><div class="corner br">3</div></div>
+                        <div class="key-4way" data-code="Period"><div class="corner tl">;</div><div class="corner tr">;</div><div class="corner bl">.</div><div class="corner br">.</div></div>
+                        <div class="key-4way" data-code="Slash"><div class="corner tl">K</div><div class="corner tr">:</div><div class="corner bl">-</div><div class="corner br">-</div></div>
+                        <div class="key-4way" data-code="ShiftRight"><div class="corner tl">TG5</div><div class="corner tr">SFT</div><div class="corner bl">+</div><div class="corner br">+</div></div>
+                    </div>
+                    <!-- Thumbs -->
+                    <div class="row row-thumbs" style="gap: 0.4rem;">
+                        <div class="key-4way thumb" data-code="Space"><div class="corner tl">SPC</div><div class="corner tr">SPC</div><div class="corner bl">▽</div><div class="corner br">▽</div></div>
+                        <div class="key-4way thumb special-key" data-code="AltRight"><div class="corner tl">L3</div><div class="corner tr">L3</div><div class="corner bl">▽</div><div class="corner br">▽</div></div>
+                        <div class="key-4way thumb" data-code="ControlRight"><div class="corner tl">CTL</div><div class="corner tr">CTL</div><div class="corner bl">▽</div><div class="corner br">0</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW SECTION: CALQUE MÉDIAS / FN (LAYER 8) -->
+        <div class="section">
+            <h2 class="section-title"><span class="color-tag tag-fn"><i class="fa-solid fa-sliders"></i> Contrôles</span> Calque Système, Médias &amp; Touches de Fonction (Layer 8)</h2>
+            <p>Ce calque s'active **en maintenant enfoncé le pouce gauche** sur la touche Entrée (<code>L8/ENT</code>). Pratique pour gérer la musique, le son et l'affichage d'un seul geste.</p>
+            
+            <div class="keyboard">
+                <!-- Left Half -->
+                <div class="half half-left">
+                    <div class="row">
+                        <div class="key fn-key" data-code="Tab">F1</div>
+                        <div class="key fn-key" data-code="KeyQ">F2</div>
+                        <div class="key fn-key" data-code="KeyW">F3</div>
+                        <div class="key fn-key" data-code="KeyE">F4</div>
+                        <div class="key fn-key" data-code="KeyR">F5</div>
+                        <div class="key fn-key" data-code="KeyT">F6</div>
+                    </div>
+                    <div class="row">
+                        <div class="key fn-key" data-code="Escape">F7</div>
+                        <div class="key fn-key" data-code="KeyA">F8</div>
+                        <div class="key fn-key" data-code="KeyS">F9</div>
+                        <div class="key fn-key" data-code="KeyD">F10</div>
+                        <div class="key fn-key" data-code="KeyF">F11</div>
+                        <div class="key fn-key" data-code="KeyG">F12</div>
+                    </div>
+                    <div class="row">
+                        <div class="key unused" data-code="ShiftLeft"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyZ"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyX"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyC"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyV"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyB"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row row-thumbs">
+                        <div class="key modifier" data-code="ShiftLeft">___</div>
+                        <div class="key modifier" data-code="AltLeft">___</div>
+                        <div class="key modifier" data-code="Enter">___</div>
+                    </div>
+                </div>
+                <!-- Right Half -->
+                <div class="half half-right">
+                    <div class="row">
+                        <div class="key" data-code="KeyY"><i class="fa-solid fa-backward"></i></div>
+                        <div class="key" data-code="KeyU"><i class="fa-solid fa-forward"></i></div>
+                        <div class="key" data-code="KeyI"><i class="fa-solid fa-play"></i><i class="fa-solid fa-pause" style="font-size:0.5rem; margin-left:1px"></i></div>
+                        <div class="key unused" data-code="KeyO"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyP"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Backspace"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="key" data-code="KeyH"><i class="fa-solid fa-volume-low"></i></div>
+                        <div class="key" data-code="KeyJ"><i class="fa-solid fa-volume-high"></i></div>
+                        <div class="key" data-code="KeyK"><i class="fa-solid fa-volume-xmark"></i></div>
+                        <div class="key unused" data-code="KeyL"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Semicolon"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Enter"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="key" data-code="KeyN"><i class="fa-solid fa-sun" style="font-size:0.75rem"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
+                        <div class="key" data-code="KeyM"><i class="fa-solid fa-sun" style="font-size:0.75rem"></i> <i class="fa-solid fa-plus" style="font-size:0.5rem"></i></div>
+                        <div class="key unused" data-code="Comma"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Period"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Slash"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="ShiftRight"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row row-thumbs">
+                        <div class="key modifier" data-code="Space">___</div>
+                        <div class="key modifier" data-code="AltRight">___</div>
+                        <div class="key modifier" data-code="ControlRight">___</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color tag-fn"></div> <span>Touches de fonction F1 à F12 (Main Gauche)</span></div>
+                <div class="legend-item"><div class="legend-color" style="background-color: var(--key-bg); border: 1px solid var(--key-border);"></div> <span>Contrôles multimédias &amp; d'affichage (Main Droite)</span></div>
+            </div>
+        </div>
+
+        <!-- SECTION: CALQUE ACCENTS DÉDIÉ (LAYER 7) -->
+        <div class="section">
+            <h2 class="section-title"><span class="color-tag tag-ac"><i class="fa-solid fa-font"></i> Accents</span> Calque Accents &amp; Ligatures (Layer 7)</h2>
+            <p>Ce calque s'active **en maintenant enfoncés les deux pouces** (Calque 2 + Calque 3). Les voyelles accentuées sont sur la ligne de repos gauche (Home Row) pour un confort de saisie optimal.</p>
+            
+            <div class="keyboard">
+                <!-- Left Half -->
+                <div class="half half-left">
+                    <div class="row">
+                        <div class="key unused" data-code="Tab"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key" data-code="KeyQ">²</div>
+                        <div class="key" data-code="KeyW">°</div>
+                        <div class="key" data-code="KeyE">^ <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
+                        <div class="key" data-code="KeyR">¨ <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
+                        <div class="key unused" data-code="KeyT"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="key unused" data-code="Escape"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key accent-vow" data-code="KeyA">ù</div>
+                        <div class="key accent-vow" data-code="KeyS">à</div>
+                        <div class="key accent-vow" data-code="KeyD">è</div>
+                        <div class="key accent-vow" data-code="KeyF">é</div>
+                        <div class="key accent-vow" data-code="KeyG">ç</div>
+                    </div>
+                    <div class="row">
+                        <div class="key unused" data-code="ShiftLeft"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key" data-code="KeyZ">«</div>
+                        <div class="key" data-code="KeyX">»</div>
+                        <div class="key unused" data-code="KeyC"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyV"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyB"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row row-thumbs">
+                        <div class="key modifier" data-code="ShiftLeft">___</div>
+                        <div class="key modifier" data-code="AltLeft">___</div>
+                        <div class="key modifier" data-code="Enter">___</div>
+                    </div>
+                </div>
+                <!-- Right Half -->
+                <div class="half half-right">
+                    <div class="row">
+                        <div class="key unused" data-code="KeyY"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyU"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyI"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyO"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyP"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Backspace"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="key unused" data-code="KeyH"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key" data-code="KeyJ">^ <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
+                        <div class="key" data-code="KeyK">¨ <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
+                        <div class="key" data-code="KeyL">` <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
+                        <div class="key" data-code="Semicolon">~ <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
+                        <div class="key unused" data-code="Enter"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="key unused" data-code="KeyN"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key" data-code="KeyM">œ</div>
+                        <div class="key" data-code="Comma">æ</div>
+                        <div class="key unused" data-code="Period"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Slash"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="ShiftRight"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row row-thumbs">
+                        <div class="key modifier" data-code="Space">___</div>
+                        <div class="key modifier" data-code="AltRight">___</div>
+                        <div class="key modifier" data-code="ControlRight">___</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color tag-ac"></div> <span>Voyelles accentuées directes (Home Row)</span></div>
+                <div class="legend-item"><div class="legend-color" style="background-color: var(--key-bg); border: 1px solid var(--key-border);"></div> <span>Accents morts &amp; Raccourcis spécifiques Mac (œ, æ, «, »)</span></div>
+            </div>
+        </div>
+
+        <!-- SECTION: CALQUE JEU CUSTOM (LAYER 5) -->
+        <div class="section">
+            <h2 class="section-title"><span class="color-tag tag-mc"><i class="fa-solid fa-gamepad"></i> Jeu</span> Calque de Jeu Customisable (Layer 5)</h2>
+            <p>Activez ce calque avec <code>TG(5)</code>. Utilisez <strong>VIA / VIAL</strong> pour réassigner n'importe quelle touche pour n'importe quel jeu à la volée !</p>
+            <div class="info-box">
+                <i class="fa-solid fa-circle-check"></i> <strong>RGB Intelligent Dynamique :</strong> Notre scannage matriciel s'adapte en temps réel aux touches que vous configurez dans VIA :<br>
+                * Les touches configurées comme inactives (<code>KC_NO</code>) <strong>s'éteignent automatiquement</strong>.<br>
+                * Les touches de mouvement <strong>ZQSD</strong> restent animées d'une <strong>vague arc-en-ciel constante</strong>.<br>
+                * Les autres touches de jeu actives s'illuminent en **Blanc**.<br>
+                * La touche **Echap** s'illumine en **Violet**.
+            </div>
+            
+            <div class="keyboard">
+                <!-- Left Half -->
+                <div class="half half-left">
+                    <div class="row">
+                        <div class="key esc mc" data-code="Tab"><i class="fa-solid fa-door-open"></i></div>
+                        <div class="key" data-code="KeyQ">1</div>
+                        <div class="key" data-code="KeyW">2</div>
+                        <div class="key zqsd" data-code="KeyE">Z</div>
+                        <div class="key" data-code="KeyR">3</div>
+                        <div class="key" data-code="KeyT">4</div>
+                    </div>
+                    <div class="row">
+                        <div class="key unused" data-code="Escape"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key modifier" data-code="KeyA">SHIFT</div>
+                        <div class="key zqsd" data-code="KeyS">Q</div>
+                        <div class="key zqsd" data-code="KeyD">S</div>
+                        <div class="key zqsd" data-code="KeyF">D</div>
+                        <div class="key" data-code="KeyG">F</div>
+                    </div>
+                    <div class="row">
+                        <div class="key" data-code="KeyZ">I</div>
+                        <div class="key modifier" data-code="KeyX">CTRL</div>
+                        <div class="key" data-code="KeyC">T</div>
+                        <div class="key" data-code="KeyV">C</div>
+                        <div class="key" data-code="KeyB">V</div>
+                        <div class="key unused" data-code="ShiftLeft"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row row-thumbs">
+                        <div class="key unused" data-code="ShiftLeft"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key modifier" data-code="AltLeft">MO(6)</div>
+                        <div class="key modifier" data-code="Space">ESPACE</div>
+                    </div>
+                </div>
+                <!-- Right Half -->
+                <div class="half half-right">
+                    <div class="row">
+                        <div class="key unused" data-code="KeyY"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyU"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyI"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyO"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyP"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Backspace"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="key unused" data-code="KeyH"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyJ"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyK"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyL"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Semicolon"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Enter"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="key modifier" data-code="KeyN" style="background-color: #ef4444; border-color: #b91c1c;"><i class="fa-solid fa-right-from-bracket"></i></div>
+                        <div class="key unused" data-code="KeyM"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Comma"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Period"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Slash"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="ShiftRight"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row row-thumbs">
+                        <div class="key unused" data-code="Space"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="AltRight"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="ControlRight"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 1: FONCTIONNEMENT GLOBAL -->
+        <div class="section">
+            <h2 class="section-title"><i class="fa-solid fa-circle-info"></i> Fonctionnement Global &amp; Système</h2>
+            <div class="grid-2">
+                <div>
+                    <h3><i class="fa-solid fa-route"></i> Navigation entre les calques</h3>
+                    <p>Le clavier utilise des calques intelligents pour regrouper les touches par fonction :</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; list-style-type: square;">
+                        <li><strong>Calques de Base :</strong> Calque 0 (Perso AY) et Calque 1 (AZERTY Base).</li>
+                        <li><strong>Raccourcis Système :</strong> Accessible en maintenant les touches de pouce pour ouvrir les Symboles (Layer 2) ou les Chiffres (Layer 3).</li>
+                        <li><strong>Calque Accents :</strong> Maintenez <code>L2</code> + <code>L3</code> pour activer les accents français.</li>
+                        <li><strong>Mode Jeu :</strong> Activez le calque de jeu (Layer 5) avec <code>TG(5)</code>. Pour en sortir, appuyez sur la touche <i class="fa-solid fa-right-from-bracket"></i> (main droite, sous le pouce) qui exécute <code>TO(0)</code>.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3><i class="fa-solid fa-tv"></i> Gestion de l'affichage OLED &amp; RGB</h3>
+                    <div class="info-box">
+                        <strong>Écran Principal (Gauche) :</strong><br>
+                        * Ligne 1 : Mode actif (AY / AZERTY)<br>
+                        * Ligne 2 : Calque en cours<br>
+                        * Ligne 3 : Modificateurs actifs (Shift, Ctrl, Alt, GUI)<br>
+                        * Ligne 4 : **OS Détecté** (MacOS, Windows, Linux) qui alterne avec le menu **RGB** (échelle 0 à 9) lorsque le Calque LED est activé.<br><br>
+                        <strong>Écran Secondaire (Droit) :</strong><br>
+                        * Affiche votre logo personnalisé : **ARKAN YOTA / CORNE KEYBOARD**.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: CALQUE DE CONFIGURATION LED -->
+        <div class="section">
+            <h2 class="section-title"><i class="fa-solid fa-lightbulb"></i> Calque Système / LED (Layer 4)</h2>
+            <p>Contrôlez l'éclairage de votre clavier à la volée. Appuyez sur <i class="fa-solid fa-rotate-left" style="color: var(--accent-pg);"></i> pour tout restaurer instantanément.</p>
+            
+            <div class="keyboard">
+                <!-- Left Half -->
+                <div class="half half-left">
+                    <div class="row">
+                        <div class="key modifier" data-code="Tab" style="background-color: #3b82f6; border-color: #1d4ed8; color: #fff;"><i class="fa-solid fa-microchip"></i></div>
+                        <div class="key" data-code="KeyQ" style="background-color: #eab308; border-color: #ca8a04; color: #fff;"><i class="fa-solid fa-backward"></i></div>
+                        <div class="key" data-code="KeyW" style="background-color: #a855f7; border-color: #9333ea; color: #fff;"><i class="fa-solid fa-gauge-high"></i></div>
+                        <div class="key" data-code="KeyE" style="background-color: #a855f7; border-color: #9333ea; color: #fff;"><i class="fa-solid fa-gauge"></i></div>
+                        <div class="key" data-code="KeyR" style="background-color: #22c55e; border-color: #16a34a; color: #fff;"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div class="key" data-code="KeyT" style="background-color: #960000; border-color: #700000; color: #fff;"><i class="fa-regular fa-lightbulb"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="key modifier" data-code="Escape" style="background-color: #22c55e; border-color: #16a34a; color: #fff;"><i class="fa-solid fa-toggle-on"></i></div>
+                        <div class="key" data-code="KeyA" style="background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6); border-color: #8b5cf6; color: #fff;"><i class="fa-solid fa-palette"></i> <i class="fa-solid fa-plus" style="font-size:0.5rem"></i></div>
+                        <div class="key" data-code="KeyS" style="background-color: #06b6d4; border-color: #0891b2; color: #fff;"><i class="fa-solid fa-droplet"></i> <i class="fa-solid fa-plus" style="font-size:0.5rem"></i></div>
+                        <div class="key" data-code="KeyD" style="background-color: #f59e0b; border-color: #d97706; color: #fff;"><i class="fa-solid fa-sun"></i> <i class="fa-solid fa-plus" style="font-size:0.5rem"></i></div>
+                        <div class="key" data-code="KeyF" style="background-color: #3b82f6; border-color: #1d4ed8; color: #fff;"><i class="fa-solid fa-layer-group"></i> <i class="fa-solid fa-plus" style="font-size:0.5rem"></i></div>
+                        <div class="key" data-code="KeyG" style="background-color: #3b82f6; border-color: #1d4ed8; color: #fff;"><i class="fa-solid fa-layer-group"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="key" data-code="KeyZ" style="background-color: #eab308; border-color: #ca8a04; color: #fff;"><i class="fa-solid fa-forward"></i></div>
+                        <div class="key" data-code="KeyX" style="background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6); border-color: #8b5cf6; color: #fff;"><i class="fa-solid fa-palette"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
+                        <div class="key" data-code="KeyC" style="background-color: #a5f3fc; border-color: #22d3ee; color: #0f172a;"><i class="fa-solid fa-droplet"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
+                        <div class="key" data-code="KeyV" style="background-color: #78350f; border-color: #451a03; color: #fff;"><i class="fa-solid fa-sun"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
+                        <div class="key modifier" data-code="KeyB" style="background-color: #ef4444; border-color: #dc2626; color: #fff;"><i class="fa-solid fa-rotate-left"></i></div>
+                        <div class="key unused" data-code="ShiftLeft"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row row-thumbs">
+                        <div class="key modifier" data-code="ShiftLeft">___</div>
+                        <div class="key modifier" data-code="AltLeft">___</div>
+                        <div class="key modifier" data-code="Space">___</div>
+                    </div>
+                </div>
+                <!-- Right Half -->
+                <div class="half half-right">
+                    <div class="row">
+                        <div class="key" data-code="KeyY" style="background: linear-gradient(135deg, #ef4444, #3b82f6, #10b981); border-color: #8b5cf6; color: #fff;"><i class="fa-solid fa-rainbow"></i></div>
+                        <div class="key" data-code="KeyU" style="background-color: #06b6d4; border-color: #0891b2; color: #fff;"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="key" data-code="KeyI" style="background-color: #10b981; border-color: #059669; color: #fff;"><i class="fa-solid fa-water"></i></div>
+                        <div class="key" data-code="KeyO" style="background-color: #f97316; border-color: #ea580c; color: #fff;"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                        <div class="key unused" data-code="KeyP"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Backspace"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="key modifier" data-code="KeyH" style="background-color: #3b82f6; border-color: #1d4ed8; color: #fff;"><i class="fa-solid fa-house"></i></div>
+                        <div class="key modifier" data-code="KeyJ" style="background-color: #94a3b8; border-color: #475569; color: #fff;"><i class="fa-solid fa-keyboard"></i></div>
+                        <div class="key modifier" data-code="KeyK" style="background-color: #ef4444; border-color: #b91c1c; color: #fff;"><i class="fa-solid fa-right-from-bracket"></i></div>
+                        <div class="key unused" data-code="KeyL"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Semicolon"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Enter"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="key unused" data-code="KeyN"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="KeyM"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Comma"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Period"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="Slash"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key unused" data-code="ShiftRight"><i class="fa-solid fa-ban"></i></div>
+                    </div>
+                    <div class="row row-thumbs">
+                        <div class="key modifier" data-code="Space">___</div>
+                        <div class="key modifier" data-code="AltRight">___</div>
+                        <div class="key modifier" data-code="ControlRight">___</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background-color: #ea580c;"></div> <span><i class="fa-solid fa-rotate-left"></i> Reset RGB (Rouge, Saturation max, Luminosité 4/9)</span></div>
+                <div class="legend-item"><div class="legend-color" style="background-color: #334155;"></div> <span>Modificateurs Système (allumés en blanc)</span></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS for Key Press Detection -->
+    <script>
+        let currentLayout = 'ay';
+
+        function setMode(mode) {
+            currentLayout = mode;
+            document.body.classList.remove('mode-ay', 'mode-azerty');
+            document.body.classList.add('mode-' + mode);
+            
+            document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+            if (mode === 'ay') {
+                document.getElementById('btn-mode-ay').classList.add('active');
+            } else {
+                document.getElementById('btn-mode-azerty').classList.add('active');
+            }
+        }
+
+        // Mappings from characters to physical Corne key positions (data-code coordinates)
+        const mapAY = {
+            'q': 'KeyQ', 'c': 'KeyW', 'o': 'KeyE', 'p': 'KeyR', 'w': 'KeyT',
+            'a': 'KeyA', 's': 'KeyS', 'e': 'KeyD', 'n': 'KeyF', 'f': 'KeyG',
+            'z': 'KeyZ', 'x': 'KeyX', '.': 'KeyC', 'v': 'KeyV', 'b': 'KeyB',
+            'j': 'KeyY', 'm': 'KeyU', 'd': 'KeyI', '!': 'KeyO', 'y': 'KeyP',
+            'l': 'KeyH', 'r': 'KeyJ', 't': 'KeyK', 'i': 'KeyL', 'u': 'Semicolon',
+            'h': 'KeyM', 'g': 'Comma', ';': 'Period', 'k': 'Slash'
+        };
+
+        const mapAZERTY = {
+            'a': 'KeyQ', 'z': 'KeyW', 'e': 'KeyE', 'r': 'KeyR', 't': 'KeyT',
+            'q': 'KeyA', 's': 'KeyS', 'd': 'KeyD', 'f': 'KeyF', 'g': 'KeyG',
+            'w': 'KeyZ', 'x': 'KeyX', 'c': 'KeyC', 'v': 'KeyV', 'b': 'KeyB',
+            'y': 'KeyY', 'u': 'KeyU', 'i': 'KeyI', 'o': 'KeyO', 'p': 'KeyP',
+            'h': 'KeyH', 'j': 'KeyJ', 'k': 'KeyK', 'l': 'KeyL', 'm': 'Semicolon',
+            'n': 'KeyN', ',': 'Comma', ';': 'Period', ':': 'Slash'
+        };
+
+        function getTargetCode(e) {
+            const char = e.key ? e.key.toLowerCase() : '';
+            const activeMap = currentLayout === 'ay' ? mapAY : mapAZERTY;
+            if (activeMap[char]) {
+                return activeMap[char];
+            }
+            return e.code; // Fallback to hardware key code for control keys (Tab, Esc, Space, etc.)
+        }
+
+        document.addEventListener('keydown', (e) => {
+            const targetCode = getTargetCode(e);
+            const keys = document.querySelectorAll(`[data-code="${targetCode}"]`);
+            keys.forEach(key => {
+                key.classList.add('pressed');
+            });
+
+            // Update live feedback panel
+            if (keys.length > 0) {
+                const firstKey = keys[0];
+                const feedbackDetails = document.getElementById('feedback-details');
+                const feedbackStatus = document.getElementById('feedback-status');
+                const pulseDot = document.querySelector('.pulse-dot');
+                
+                let valAy = '';
+                let valAzerty = '';
+                
+                if (firstKey.classList.contains('key-4way')) {
+                    const tl = firstKey.querySelector('.tl');
+                    const tr = firstKey.querySelector('.tr');
+                    valAy = tl ? tl.innerHTML : '-';
+                    valAzerty = tr ? tr.innerHTML : '-';
+                } else {
+                    valAy = firstKey.innerHTML;
+                    valAzerty = firstKey.innerHTML;
+                }
+                
+                let displayCode = targetCode.replace('Key', '');
+                
+                document.getElementById('feedback-key-code').innerText = displayCode;
+                document.getElementById('feedback-val-ay').innerHTML = valAy;
+                document.getElementById('feedback-val-azerty').innerHTML = valAzerty;
+                
+                feedbackStatus.style.display = 'none';
+                feedbackDetails.style.display = 'flex';
+                
+                if (pulseDot) {
+                    pulseDot.classList.add('typing');
+                }
+            }
+        });
+
+        document.addEventListener('keyup', (e) => {
+            const targetCode = getTargetCode(e);
+            const keys = document.querySelectorAll(`[data-code="${targetCode}"]`);
+            keys.forEach(key => {
+                key.classList.remove('pressed');
+            });
+            
+            const pulseDot = document.querySelector('.pulse-dot');
+            if (pulseDot) {
+                pulseDot.classList.remove('typing');
+            }
+        });
+
+        window.addEventListener('blur', () => {
+            const pressedKeys = document.querySelectorAll('.pressed');
+            pressedKeys.forEach(key => key.classList.remove('pressed'));
+            const pulseDot = document.querySelector('.pulse-dot');
+            if (pulseDot) {
+                pulseDot.classList.remove('typing');
+            }
+        });
+        
+        // Initialize mode on load
+        setMode('ay');
+    </script>
+</body>
+</html>
