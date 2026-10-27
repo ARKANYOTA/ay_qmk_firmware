@@ -486,33 +486,18 @@
         }
 
         /* Dynamic Visual Mode Styles for 4-way Keycaps */
-        body.mode-ay .key-4way .tl {
+        .key-4way .tl {
             font-size: 0.95rem;
             color: #60a5fa;
             font-weight: 800;
             opacity: 1;
-            transform: scale(1.1);
             transition: all 0.2s ease;
         }
-        body.mode-ay .key-4way .tr {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            opacity: 0.35;
-            transition: all 0.2s ease;
-        }
-
-        body.mode-azerty .key-4way .tr {
-            font-size: 0.95rem;
-            color: #38bdf8;
-            font-weight: 800;
-            opacity: 1;
-            transform: scale(1.1);
-            transition: all 0.2s ease;
-        }
-        body.mode-azerty .key-4way .tl {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            opacity: 0.35;
+        .key-4way .tr {
+            font-size: 0.8rem;
+            color: #93c5fd;
+            font-weight: 600;
+            opacity: 0.85;
             transition: all 0.2s ease;
         }
     </style>
@@ -553,8 +538,8 @@
             </div>
 
             <div class="legend" style="margin-bottom: 1.5rem;">
-                <div class="legend-item"><div class="legend-color" style="background-color: #60a5fa;"></div> <span><strong>Haut-Gauche (Bleu) :</strong> Calque 0 - Base Perso (AY)</span></div>
-                <div class="legend-item"><div class="legend-color" style="background-color: #94a3b8;"></div> <span><strong>Haut-Droite (Gris) :</strong> Calque 1 - Base AZERTY</span></div>
+                <div class="legend-item"><div class="legend-color" style="background-color: #60a5fa;"></div> <span><strong>Haut-Gauche (Bleu) :</strong> Touche Normale (Minuscule / Caractère principal)</span></div>
+                <div class="legend-item"><div class="legend-color" style="background-color: #93c5fd;"></div> <span><strong>Haut-Droite (Cyan/Blanc) :</strong> Touche Majuscule (Shift / Caractère secondaire)</span></div>
                 <div class="legend-item"><div class="legend-color" style="background-color: #c084fc;"></div> <span><strong>Bas-Gauche (Mauve) :</strong> Calque 2 - Symboles</span></div>
                 <div class="legend-item"><div class="legend-color" style="background-color: #fb923c;"></div> <span><strong>Bas-Droite (Orange) :</strong> Calque 3 - Chiffres &amp; Accents</span></div>
                 <div class="legend-item"><span style="font-family: monospace; font-weight: bold; color: #f1f5f9; padding: 0 4px;">▽</span> <span>Touche héritée (Transparente)</span></div>
@@ -563,7 +548,8 @@
 
             <div class="info-box">
                 <i class="fa-solid fa-circle-info"></i> <strong>Raccourcis Système Utiles :</strong><br>
-                * Maintenez les deux pouces (<code>L2/Alt</code> + <code>L3/Alt</code>) pour les <strong>Accents (Layer 7)</strong>.<br>
+                * Maintenez la touche de pouce gauche (<code>L2 / <i class="fa-solid fa-command"></i> <i class="fa-brands fa-windows"></i></code>) pour <strong>Command (Mac ⌘) / Windows (🪟) &amp; Symboles (Layer 2)</strong>.<br>
+                * Maintenez les deux pouces (<code>L2 / <i class="fa-solid fa-command"></i> <i class="fa-brands fa-windows"></i></code> + <code>L3 / Alt ⌥</code>) pour les <strong>Accents (Layer 7)</strong>.<br>
                 * Maintenez la touche Entrée du pouce gauche (<code>L8/ENT</code>) pour les <strong>Contrôles Système &amp; Medias (Layer 8)</strong>.
             </div>
 
@@ -573,34 +559,34 @@
                     <!-- Row 0 -->
                     <div class="row" style="gap: 0.4rem;">
                         <div class="key-4way" data-code="Tab"><div class="corner tl"><i class="fa-solid fa-indent"></i></div><div class="corner tr"><i class="fa-solid fa-indent"></i></div><div class="corner bl">TG4</div><div class="corner br">²</div></div>
-                        <div class="key-4way" data-code="KeyQ"><div class="corner tl">Q</div><div class="corner tr">A</div><div class="corner bl">`</div><div class="corner br">°</div></div>
-                        <div class="key-4way" data-code="KeyW"><div class="corner tl">C</div><div class="corner tr">Z</div><div class="corner bl">"</div><div class="corner br">ç</div></div>
-                        <div class="key-4way" data-code="KeyE"><div class="corner tl">O</div><div class="corner tr">E</div><div class="corner bl">{</div><div class="corner br">^</div></div>
-                        <div class="key-4way" data-code="KeyR"><div class="corner tl">P</div><div class="corner tr">R</div><div class="corner bl">}</div><div class="corner br">`</div></div>
-                        <div class="key-4way" data-code="KeyT"><div class="corner tl">W</div><div class="corner tr">T</div><div class="corner bl">•</div><div class="corner br">TG4</div></div>
+                        <div class="key-4way" data-code="KeyQ"><div class="corner tl">q</div><div class="corner tr">Q</div><div class="corner bl">`</div><div class="corner br">°</div></div>
+                        <div class="key-4way" data-code="KeyW"><div class="corner tl">c</div><div class="corner tr">C</div><div class="corner bl">"</div><div class="corner br">ç</div></div>
+                        <div class="key-4way" data-code="KeyE"><div class="corner tl">o</div><div class="corner tr">O</div><div class="corner bl">{</div><div class="corner br">^</div></div>
+                        <div class="key-4way" data-code="KeyR"><div class="corner tl">p</div><div class="corner tr">P</div><div class="corner bl">}</div><div class="corner br">`</div></div>
+                        <div class="key-4way" data-code="KeyT"><div class="corner tl">w</div><div class="corner tr">W</div><div class="corner bl">•</div><div class="corner br">TG4</div></div>
                     </div>
                     <!-- Row 1 -->
                     <div class="row" style="gap: 0.4rem;">
                         <div class="key-4way" data-code="Escape"><div class="corner tl"><i class="fa-solid fa-arrow-right-from-bracket"></i></div><div class="corner tr"><i class="fa-solid fa-arrow-right-from-bracket"></i></div><div class="corner bl"><i class="fa-solid fa-copy"></i></div><div class="corner br">£</div></div>
-                        <div class="key-4way" data-code="KeyA"><div class="corner tl">A</div><div class="corner tr">Q</div><div class="corner bl">€</div><div class="corner br">à</div></div>
-                        <div class="key-4way" data-code="KeyS"><div class="corner tl">S</div><div class="corner tr">S</div><div class="corner bl">$</div><div class="corner br">è</div></div>
-                        <div class="key-4way" data-code="KeyD"><div class="corner tl">E</div><div class="corner tr">D</div><div class="corner bl">[</div><div class="corner br">é</div></div>
-                        <div class="key-4way" data-code="KeyF"><div class="corner tl">N</div><div class="corner tr">F</div><div class="corner bl">]</div><div class="corner br">~</div></div>
-                        <div class="key-4way" data-code="KeyG"><div class="corner tl">F</div><div class="corner tr">G</div><div class="corner bl"><i class="fa-solid fa-paste"></i></div><div class="corner br">μ</div></div>
+                        <div class="key-4way" data-code="KeyA"><div class="corner tl">a</div><div class="corner tr">A</div><div class="corner bl">€</div><div class="corner br">à</div></div>
+                        <div class="key-4way" data-code="KeyS"><div class="corner tl">s</div><div class="corner tr">S</div><div class="corner bl">$</div><div class="corner br">è</div></div>
+                        <div class="key-4way" data-code="KeyD"><div class="corner tl">e</div><div class="corner tr">E</div><div class="corner bl">[</div><div class="corner br">é</div></div>
+                        <div class="key-4way" data-code="KeyF"><div class="corner tl">n</div><div class="corner tr">N</div><div class="corner bl">]</div><div class="corner br">~</div></div>
+                        <div class="key-4way" data-code="KeyG"><div class="corner tl">f</div><div class="corner tr">F</div><div class="corner bl"><i class="fa-solid fa-paste"></i></div><div class="corner br">μ</div></div>
                     </div>
                     <!-- Row 2 -->
                     <div class="row" style="gap: 0.4rem;">
-                        <div class="key-4way unused" data-code="ShiftLeft"><div class="corner tl">•</div><div class="corner tr"><i class="fa-solid fa-arrow-up"></i></div><div class="corner bl">•</div><div class="corner br">•</div></div>
-                        <div class="key-4way" data-code="KeyZ"><div class="corner tl">Z</div><div class="corner tr">W</div><div class="corner bl">\</div><div class="corner br">•</div></div>
-                        <div class="key-4way" data-code="KeyX"><div class="corner tl">X</div><div class="corner tr">X</div><div class="corner bl">/</div><div class="corner br">•</div></div>
-                        <div class="key-4way" data-code="KeyC"><div class="corner tl">.</div><div class="corner tr">C</div><div class="corner bl">|</div><div class="corner br">•</div></div>
-                        <div class="key-4way" data-code="KeyV"><div class="corner tl">V</div><div class="corner tr">V</div><div class="corner bl">&amp;</div><div class="corner br">•</div></div>
-                        <div class="key-4way" data-code="KeyB"><div class="corner tl">B</div><div class="corner tr">B</div><div class="corner bl">*</div><div class="corner br">§</div></div>
+                        <div class="key-4way modifier" data-code="AltLeft"><div class="corner tl">ALT ⌥</div><div class="corner tr">ALT ⌥</div><div class="corner bl">•</div><div class="corner br">•</div></div>
+                        <div class="key-4way" data-code="KeyZ"><div class="corner tl">z</div><div class="corner tr">Z</div><div class="corner bl">\</div><div class="corner br">•</div></div>
+                        <div class="key-4way" data-code="KeyX"><div class="corner tl">x</div><div class="corner tr">X</div><div class="corner bl">/</div><div class="corner br">•</div></div>
+                        <div class="key-4way" data-code="KeyC"><div class="corner tl">.</div><div class="corner tr">,</div><div class="corner bl">|</div><div class="corner br">•</div></div>
+                        <div class="key-4way" data-code="KeyV"><div class="corner tl">v</div><div class="corner tr">V</div><div class="corner bl">&amp;</div><div class="corner br">•</div></div>
+                        <div class="key-4way" data-code="KeyB"><div class="corner tl">b</div><div class="corner tr">B</div><div class="corner bl">*</div><div class="corner br">§</div></div>
                     </div>
                     <!-- Thumbs -->
                     <div class="row row-thumbs" style="gap: 0.4rem;">
                         <div class="key-4way thumb" data-code="ShiftLeft"><div class="corner tl"><i class="fa-solid fa-arrow-up"></i></div><div class="corner tr"><i class="fa-solid fa-arrow-up"></i></div><div class="corner bl">▽</div><div class="corner br">▽</div></div>
-                        <div class="key-4way thumb special-key" data-code="AltLeft"><div class="corner tl">L2</div><div class="corner tr">L2</div><div class="corner bl">▽</div><div class="corner br">▽</div></div>
+                        <div class="key-4way thumb special-key" data-code="MetaLeft"><div class="corner tl">L2 <i class="fa-solid fa-command"></i><i class="fa-brands fa-windows" style="font-size:0.75em; margin-left:1px"></i></div><div class="corner tr">L2 <i class="fa-solid fa-command"></i><i class="fa-brands fa-windows" style="font-size:0.75em; margin-left:1px"></i></div><div class="corner bl">▽</div><div class="corner br">▽</div></div>
                         <div class="key-4way thumb" data-code="Enter"><div class="corner tl">L8/ENT</div><div class="corner tr">L8/ENT</div><div class="corner bl">▽</div><div class="corner br">▽</div></div>
                     </div>
                 </div>
@@ -609,30 +595,30 @@
                 <div class="half half-right" style="width: 50%; padding: 0.6rem; gap: 0.4rem;">
                     <!-- Row 0 -->
                     <div class="row" style="gap: 0.4rem;">
-                        <div class="key-4way" data-code="KeyY"><div class="corner tl">J</div><div class="corner tr">Y</div><div class="corner bl">•</div><div class="corner br">7</div></div>
-                        <div class="key-4way" data-code="KeyU"><div class="corner tl">M</div><div class="corner tr">U</div><div class="corner bl">&lt;</div><div class="corner br">8</div></div>
-                        <div class="key-4way" data-code="KeyI"><div class="corner tl">D</div><div class="corner tr">I</div><div class="corner bl">&gt;</div><div class="corner br">9</div></div>
-                        <div class="key-4way" data-code="KeyO"><div class="corner tl">!</div><div class="corner tr">O</div><div class="corner bl">;</div><div class="corner br">,</div></div>
-                        <div class="key-4way" data-code="KeyP"><div class="corner tl">Y</div><div class="corner tr">P</div><div class="corner bl">•</div><div class="corner br">^</div></div>
+                        <div class="key-4way" data-code="KeyY"><div class="corner tl">j</div><div class="corner tr">J</div><div class="corner bl">•</div><div class="corner br">7</div></div>
+                        <div class="key-4way" data-code="KeyU"><div class="corner tl">m</div><div class="corner tr">M</div><div class="corner bl">&lt;</div><div class="corner br">8</div></div>
+                        <div class="key-4way" data-code="KeyI"><div class="corner tl">d</div><div class="corner tr">D</div><div class="corner bl">&gt;</div><div class="corner br">9</div></div>
+                        <div class="key-4way" data-code="KeyO"><div class="corner tl">!</div><div class="corner tr">?</div><div class="corner bl">;</div><div class="corner br">,</div></div>
+                        <div class="key-4way" data-code="KeyP"><div class="corner tl">y</div><div class="corner tr">Y</div><div class="corner bl">•</div><div class="corner br">^</div></div>
                         <div class="key-4way" data-code="Backspace"><div class="corner tl"><i class="fa-solid fa-delete-left"></i></div><div class="corner tr"><i class="fa-solid fa-delete-left"></i></div><div class="corner bl">•</div><div class="corner br">/</div></div>
                     </div>
                     <!-- Row 1 -->
                     <div class="row" style="gap: 0.4rem;">
-                        <div class="key-4way" data-code="KeyH"><div class="corner tl">L</div><div class="corner tr">H</div><div class="corner bl">•</div><div class="corner br">4</div></div>
-                        <div class="key-4way" data-code="KeyJ"><div class="corner tl">R</div><div class="corner tr">J</div><div class="corner bl">(</div><div class="corner br">5</div></div>
-                        <div class="key-4way" data-code="KeyK"><div class="corner tl">T</div><div class="corner tr">K</div><div class="corner bl">)</div><div class="corner br">6</div></div>
-                        <div class="key-4way" data-code="KeyL"><div class="corner tl">I</div><div class="corner tr">L</div><div class="corner bl">•</div><div class="corner br">¨</div></div>
-                        <div class="key-4way" data-code="Semicolon"><div class="corner tl">U</div><div class="corner tr">M</div><div class="corner bl">_</div><div class="corner br">ù</div></div>
+                        <div class="key-4way" data-code="KeyH"><div class="corner tl">l</div><div class="corner tr">L</div><div class="corner bl">•</div><div class="corner br">4</div></div>
+                        <div class="key-4way" data-code="KeyJ"><div class="corner tl">r</div><div class="corner tr">R</div><div class="corner bl">(</div><div class="corner br">5</div></div>
+                        <div class="key-4way" data-code="KeyK"><div class="corner tl">t</div><div class="corner tr">T</div><div class="corner bl">)</div><div class="corner br">6</div></div>
+                        <div class="key-4way" data-code="KeyL"><div class="corner tl">i</div><div class="corner tr">I</div><div class="corner bl">•</div><div class="corner br">¨</div></div>
+                        <div class="key-4way" data-code="Semicolon"><div class="corner tl">u</div><div class="corner tr">U</div><div class="corner bl">_</div><div class="corner br">ù</div></div>
                         <div class="key-4way" data-code="Enter"><div class="corner tl"><i class="fa-solid fa-reply"></i></div><div class="corner tr"><i class="fa-solid fa-reply"></i></div><div class="corner bl">•</div><div class="corner br">*</div></div>
                     </div>
                     <!-- Row 2 -->
                     <div class="row" style="gap: 0.4rem;">
-                        <div class="key-4way unused" data-code="KeyN"><div class="corner tl">•</div><div class="corner tr">TG5</div><div class="corner bl">!</div><div class="corner br">1</div></div>
-                        <div class="key-4way" data-code="KeyM"><div class="corner tl">H</div><div class="corner tr">N</div><div class="corner bl">=</div><div class="corner br">2</div></div>
-                        <div class="key-4way" data-code="Comma"><div class="corner tl">G</div><div class="corner tr">,</div><div class="corner bl">•</div><div class="corner br">3</div></div>
-                        <div class="key-4way" data-code="Period"><div class="corner tl">;</div><div class="corner tr">;</div><div class="corner bl">.</div><div class="corner br">.</div></div>
-                        <div class="key-4way" data-code="Slash"><div class="corner tl">K</div><div class="corner tr">:</div><div class="corner bl">-</div><div class="corner br">-</div></div>
-                        <div class="key-4way" data-code="ShiftRight"><div class="corner tl">TG5</div><div class="corner tr">SFT</div><div class="corner bl">+</div><div class="corner br">+</div></div>
+                        <div class="key-4way unused" data-code="KeyN"><div class="corner tl">•</div><div class="corner tr">•</div><div class="corner bl">!</div><div class="corner br">1</div></div>
+                        <div class="key-4way" data-code="KeyM"><div class="corner tl">h</div><div class="corner tr">H</div><div class="corner bl">=</div><div class="corner br">2</div></div>
+                        <div class="key-4way" data-code="Comma"><div class="corner tl">g</div><div class="corner tr">G</div><div class="corner bl">•</div><div class="corner br">3</div></div>
+                        <div class="key-4way" data-code="Period"><div class="corner tl">;</div><div class="corner tr">:</div><div class="corner bl">.</div><div class="corner br">.</div></div>
+                        <div class="key-4way" data-code="Slash"><div class="corner tl">k</div><div class="corner tr">K</div><div class="corner bl">-</div><div class="corner br">-</div></div>
+                        <div class="key-4way" data-code="ShiftRight"><div class="corner tl">•</div><div class="corner tr">•</div><div class="corner bl">+</div><div class="corner br">+</div></div>
                     </div>
                     <!-- Thumbs -->
                     <div class="row row-thumbs" style="gap: 0.4rem;">
@@ -764,17 +750,17 @@
                 <div class="half half-right">
                     <div class="row">
                         <div class="key unused" data-code="KeyY"><i class="fa-solid fa-ban"></i></div>
-                        <div class="key unused" data-code="KeyU"><i class="fa-solid fa-ban"></i></div>
-                        <div class="key unused" data-code="KeyI"><i class="fa-solid fa-ban"></i></div>
-                        <div class="key unused" data-code="KeyO"><i class="fa-solid fa-ban"></i></div>
-                        <div class="key unused" data-code="KeyP"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key" data-code="KeyU">^ <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
+                        <div class="key zqsd" data-code="KeyI"><i class="fa-solid fa-arrow-up"></i></div>
+                        <div class="key" data-code="KeyO">¨ <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
+                        <div class="key" data-code="KeyP">` <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
                         <div class="key unused" data-code="Backspace"><i class="fa-solid fa-ban"></i></div>
                     </div>
                     <div class="row">
                         <div class="key unused" data-code="KeyH"><i class="fa-solid fa-ban"></i></div>
-                        <div class="key" data-code="KeyJ">^ <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
-                        <div class="key" data-code="KeyK">¨ <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
-                        <div class="key" data-code="KeyL">` <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
+                        <div class="key zqsd" data-code="KeyJ"><i class="fa-solid fa-arrow-left"></i></div>
+                        <div class="key zqsd" data-code="KeyK"><i class="fa-solid fa-arrow-down"></i></div>
+                        <div class="key zqsd" data-code="KeyL"><i class="fa-solid fa-arrow-right"></i></div>
                         <div class="key" data-code="Semicolon">~ <span style="font-size:0.6rem; color:var(--text-muted)">(mort)</span></div>
                         <div class="key unused" data-code="Enter"><i class="fa-solid fa-ban"></i></div>
                     </div>
@@ -832,17 +818,17 @@
                         <div class="key" data-code="KeyG">F</div>
                     </div>
                     <div class="row">
-                        <div class="key" data-code="KeyZ">I</div>
-                        <div class="key modifier" data-code="KeyX">CTRL</div>
-                        <div class="key" data-code="KeyC">T</div>
-                        <div class="key" data-code="KeyV">C</div>
-                        <div class="key" data-code="KeyB">V</div>
-                        <div class="key unused" data-code="ShiftLeft"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key" data-code="ShiftLeft">I</div>
+                        <div class="key modifier" data-code="KeyZ">CTRL</div>
+                        <div class="key" data-code="KeyX">T</div>
+                        <div class="key" data-code="KeyC">C</div>
+                        <div class="key" data-code="KeyV">V</div>
+                        <div class="key unused" data-code="KeyB"><i class="fa-solid fa-ban"></i></div>
                     </div>
                     <div class="row row-thumbs">
                         <div class="key unused" data-code="ShiftLeft"><i class="fa-solid fa-ban"></i></div>
                         <div class="key modifier" data-code="AltLeft">MO(6)</div>
-                        <div class="key modifier" data-code="Space">ESPACE</div>
+                        <div class="key modifier" data-code="Enter">ESPACE</div>
                     </div>
                 </div>
                 <!-- Right Half -->
@@ -934,17 +920,17 @@
                         <div class="key" data-code="KeyG" style="background-color: #3b82f6; border-color: #1d4ed8; color: #fff;"><i class="fa-solid fa-layer-group"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
                     </div>
                     <div class="row">
-                        <div class="key" data-code="KeyZ" style="background-color: #eab308; border-color: #ca8a04; color: #fff;"><i class="fa-solid fa-forward"></i></div>
-                        <div class="key" data-code="KeyX" style="background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6); border-color: #8b5cf6; color: #fff;"><i class="fa-solid fa-palette"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
-                        <div class="key" data-code="KeyC" style="background-color: #a5f3fc; border-color: #22d3ee; color: #0f172a;"><i class="fa-solid fa-droplet"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
-                        <div class="key" data-code="KeyV" style="background-color: #78350f; border-color: #451a03; color: #fff;"><i class="fa-solid fa-sun"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
-                        <div class="key modifier" data-code="KeyB" style="background-color: #ef4444; border-color: #dc2626; color: #fff;"><i class="fa-solid fa-rotate-left"></i></div>
-                        <div class="key unused" data-code="ShiftLeft"><i class="fa-solid fa-ban"></i></div>
+                        <div class="key" data-code="ShiftLeft" style="background-color: #eab308; border-color: #ca8a04; color: #fff;"><i class="fa-solid fa-forward"></i></div>
+                        <div class="key" data-code="KeyZ" style="background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6); border-color: #8b5cf6; color: #fff;"><i class="fa-solid fa-palette"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
+                        <div class="key" data-code="KeyX" style="background-color: #a5f3fc; border-color: #22d3ee; color: #0f172a;"><i class="fa-solid fa-droplet"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
+                        <div class="key" data-code="KeyC" style="background-color: #78350f; border-color: #451a03; color: #fff;"><i class="fa-solid fa-sun"></i> <i class="fa-solid fa-minus" style="font-size:0.5rem"></i></div>
+                        <div class="key modifier" data-code="KeyV" style="background-color: #ef4444; border-color: #dc2626; color: #fff;"><i class="fa-solid fa-rotate-left"></i></div>
+                        <div class="key unused" data-code="KeyB"><i class="fa-solid fa-ban"></i></div>
                     </div>
                     <div class="row row-thumbs">
                         <div class="key modifier" data-code="ShiftLeft">___</div>
                         <div class="key modifier" data-code="AltLeft">___</div>
-                        <div class="key modifier" data-code="Space">___</div>
+                        <div class="key modifier" data-code="Enter">___</div>
                     </div>
                 </div>
                 <!-- Right Half -->
@@ -993,6 +979,85 @@
     <script>
         let currentLayout = 'ay';
 
+        const layoutData = {
+            ay: {
+                KeyQ: { tl: 'q', tr: 'Q' },
+                KeyW: { tl: 'c', tr: 'C' },
+                KeyE: { tl: 'o', tr: 'O' },
+                KeyR: { tl: 'p', tr: 'P' },
+                KeyT: { tl: 'w', tr: 'W' },
+
+                KeyA: { tl: 'a', tr: 'A' },
+                KeyS: { tl: 's', tr: 'S' },
+                KeyD: { tl: 'e', tr: 'E' },
+                KeyF: { tl: 'n', tr: 'N' },
+                KeyG: { tl: 'f', tr: 'F' },
+
+                KeyZ: { tl: 'z', tr: 'Z' },
+                KeyX: { tl: 'x', tr: 'X' },
+                KeyC: { tl: '.', tr: ',' },
+                KeyV: { tl: 'v', tr: 'V' },
+                KeyB: { tl: 'b', tr: 'B' },
+
+                KeyY: { tl: 'j', tr: 'J' },
+                KeyU: { tl: 'm', tr: 'M' },
+                KeyI: { tl: 'd', tr: 'D' },
+                KeyO: { tl: '!', tr: '?' },
+                KeyP: { tl: 'y', tr: 'Y' },
+
+                KeyH: { tl: 'l', tr: 'L' },
+                KeyJ: { tl: 'r', tr: 'R' },
+                KeyK: { tl: 't', tr: 'T' },
+                KeyL: { tl: 'i', tr: 'I' },
+                Semicolon: { tl: 'u', tr: 'U' },
+
+                KeyN: { tl: '•', tr: '•' },
+                KeyM: { tl: 'h', tr: 'H' },
+                Comma: { tl: 'g', tr: 'G' },
+                Period: { tl: ';', tr: ':' },
+                Slash: { tl: 'k', tr: 'K' },
+                ShiftRight: { tl: '•', tr: '•' }
+            },
+            azerty: {
+                KeyQ: { tl: 'a', tr: 'A' },
+                KeyW: { tl: 'z', tr: 'Z' },
+                KeyE: { tl: 'e', tr: 'E' },
+                KeyR: { tl: 'r', tr: 'R' },
+                KeyT: { tl: 't', tr: 'T' },
+
+                KeyA: { tl: 'q', tr: 'Q' },
+                KeyS: { tl: 's', tr: 'S' },
+                KeyD: { tl: 'd', tr: 'D' },
+                KeyF: { tl: 'f', tr: 'F' },
+                KeyG: { tl: 'g', tr: 'G' },
+
+                KeyZ: { tl: 'w', tr: 'W' },
+                KeyX: { tl: 'x', tr: 'X' },
+                KeyC: { tl: 'c', tr: 'C' },
+                KeyV: { tl: 'v', tr: 'V' },
+                KeyB: { tl: 'b', tr: 'B' },
+
+                KeyY: { tl: 'y', tr: 'Y' },
+                KeyU: { tl: 'u', tr: 'U' },
+                KeyI: { tl: 'i', tr: 'I' },
+                KeyO: { tl: 'o', tr: 'O' },
+                KeyP: { tl: 'p', tr: 'P' },
+
+                KeyH: { tl: 'h', tr: 'H' },
+                KeyJ: { tl: 'j', tr: 'J' },
+                KeyK: { tl: 'k', tr: 'K' },
+                KeyL: { tl: 'l', tr: 'L' },
+                Semicolon: { tl: 'm', tr: 'M' },
+
+                KeyN: { tl: 'n', tr: 'N' },
+                KeyM: { tl: ',', tr: '?' },
+                Comma: { tl: ';', tr: '.' },
+                Period: { tl: ':', tr: '/' },
+                Slash: { tl: '•', tr: '•' },
+                ShiftRight: { tl: 'SFT', tr: 'SFT' }
+            }
+        };
+
         function setMode(mode) {
             currentLayout = mode;
             document.body.classList.remove('mode-ay', 'mode-azerty');
@@ -1003,6 +1068,19 @@
                 document.getElementById('btn-mode-ay').classList.add('active');
             } else {
                 document.getElementById('btn-mode-azerty').classList.add('active');
+            }
+
+            const map = layoutData[mode];
+            if (map) {
+                Object.keys(map).forEach(code => {
+                    const keys = document.querySelectorAll(`.key-4way[data-code="${code}"]`);
+                    keys.forEach(key => {
+                        const tl = key.querySelector('.tl');
+                        const tr = key.querySelector('.tr');
+                        if (tl) tl.innerHTML = map[code].tl;
+                        if (tr) tr.innerHTML = map[code].tr;
+                    });
+                });
             }
         }
 
@@ -1022,7 +1100,7 @@
             'w': 'KeyZ', 'x': 'KeyX', 'c': 'KeyC', 'v': 'KeyV', 'b': 'KeyB',
             'y': 'KeyY', 'u': 'KeyU', 'i': 'KeyI', 'o': 'KeyO', 'p': 'KeyP',
             'h': 'KeyH', 'j': 'KeyJ', 'k': 'KeyK', 'l': 'KeyL', 'm': 'Semicolon',
-            'n': 'KeyN', ',': 'Comma', ';': 'Period', ':': 'Slash'
+            'n': 'KeyN', ',': 'KeyM', ';': 'Comma', ':': 'Period'
         };
 
         function getTargetCode(e) {

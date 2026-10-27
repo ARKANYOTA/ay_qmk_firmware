@@ -1,6 +1,8 @@
 OS_DETECTION_ENABLE = yes
 SPLIT_DETECTED_OS_ENABLE = yes
 VIA_ENABLE = no
+RAW_ENABLE = yes
+NKRO_ENABLE = no
 
 # Optimisations de taille de firmware
 LTO_ENABLE = yes

@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 #include "keymap_french.h"
 #include "os_detection.h"
+#include "keymap_introspection.h"
+
 
 
 enum custom_keycodes {
@@ -84,9 +86,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        KC_ESC,    FR_A,    FR_S,    FR_E,    FR_N,    FR_F,                         FR_L,    FR_R,    FR_T,    FR_I,    FR_U,  KC_ENT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX,    FR_Z,    FR_X, MY_DOT ,    FR_V,    FR_B,                      XXXXXXX,    FR_H,    FR_G, MY_SCLN,    FR_K,  XXXXXXX,
+       KC_LALT,    FR_Z,    FR_X, MY_DOT ,    FR_V,    FR_B,                      XXXXXXX,    FR_H,    FR_G, MY_SCLN,    FR_K,  XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LSFT, LT(2, KC_LALT), LT(8, KC_ENT),  KC_SPC, LT(3, KC_RALT), KC_LCTL
+                                          KC_LSFT, LT(2, KC_LGUI), LT(8, KC_ENT),  KC_SPC, LT(3, KC_RALT), KC_LCTL
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -97,9 +99,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        KC_ESC,    FR_Q,    FR_S,    FR_D,    FR_F,    FR_G,                         FR_H,    FR_J,    FR_K,    FR_L,    FR_M,   KC_ENT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    FR_W,    FR_X,    FR_C,    FR_V,    FR_B,                      FR_N, FR_COMM, FR_SCLN, FR_COLN, XXXXXXX, KC_RSFT,
+      KC_LALT,    FR_W,    FR_X,    FR_C,    FR_V,    FR_B,                      FR_N, FR_COMM, FR_SCLN, FR_COLN, XXXXXXX, KC_RSFT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LSFT, LT(2, KC_LALT), LT(8, KC_ENT),  KC_SPC, LT(3, KC_RALT), KC_LCTL
+                                          KC_LSFT, LT(2, KC_LGUI), LT(8, KC_ENT),  KC_SPC, LT(3, KC_RALT), KC_LCTL
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -129,11 +131,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [4] = LAYOUT_split_3x6_3( // Leds
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      QK_BOOT, RM_PREV, RM_SPDU, RM_SPDD,   RM_ON,  RM_OFF,                      MY_RGB_RAINBOW, MY_RGB_REACTIVE, MY_RGB_SPLASH, MY_RGB_HEATMAP, XXXXXXX, XXXXXXX,
+      QK_BOOT, RM_PREV, RM_SPDU, RM_SPDD,   RM_ON,  RM_OFF,                      MY_RGB_RAINBOW, MY_RGB_REACTIVE, MY_RGB_SPLASH, MY_RGB_HEATMAP, KC_F13,  KC_F14,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RM_TOGG, RM_HUEU, RM_SATU, RM_VALU, RM_FLGN, RM_FLGP,                      DF(0),   DF(1),   TO(0),   XXXXXXX, XXXXXXX, XXXXXXX,
+      RM_TOGG, RM_HUEU, RM_SATU, RM_VALU, RM_FLGN, RM_FLGP,                      DF(0),   DF(1),   TO(0),   XXXXXXX, KC_F15,  KC_F16,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RM_NEXT, RM_HUED, RM_SATD, RM_VALD, MY_RGB_RESET, XXXXXXX,                 TG(5), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      RM_NEXT, RM_HUED, RM_SATD, RM_VALD, MY_RGB_RESET, XXXXXXX,                 TG(5), XXXXXXX, XXXXXXX, XXXXXXX, KC_F17,  KC_F18,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,       _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -165,9 +167,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [7] = LAYOUT_split_3x6_3( // Accents (activé en maintenant les deux pouces)
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       XXXXXXX,  MY_SUP2,   FR_DEG,  FR_CIRC,  FR_DIAE,  XXXXXXX,                XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+       XXXXXXX,  MY_SUP2,   FR_DEG,  FR_CIRC,  FR_DIAE,  XXXXXXX,                XXXXXXX,  FR_CIRC,    KC_UP,  FR_DIAE,   FR_GRV,  XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       XXXXXXX,  FR_UGRV,  FR_AGRV,  FR_EGRV,  FR_EACU,  FR_CCED,                XXXXXXX,  FR_CIRC,  FR_DIAE,  FR_GRV,   FR_TILD,  XXXXXXX,
+       XXXXXXX,  FR_UGRV,  FR_AGRV,  FR_EGRV,  FR_EACU,  FR_CCED,                XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_RGHT,  FR_TILD,  XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        XXXXXXX,  MY_LDAQ,  MY_RDAQ,  XXXXXXX,  XXXXXXX,  XXXXXXX,                XXXXXXX,   MY_OE,    MY_AE,   XXXXXXX,  XXXXXXX,  XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -363,6 +365,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
+        case KC_F13:
+        case KC_F14:
+        case KC_F15:
+        case KC_F16:
+        case KC_F17:
+        case KC_F18:
+            return false;
+
         default:
             return true;
     }
@@ -481,11 +491,44 @@ static void oled_render_rgb_state(void) {
     oled_write(rgb_str, false);
 }
 
+static const char PROGMEM right_oled_logo[512] = {
+    	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x80, 0x80, 0xc0, 0xc0, 0xe0, 0xe0, 0xe0, 0xc0, 0xc0, 0x80, 0x80, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xfe, 0xfe,
+	0xff, 0xff, 0xef, 0xef, 0xe7, 0xe7, 0xe3, 0xff, 0x7f, 0xf9, 0xe3, 0xc3, 0xf7, 0xff, 0x7f, 0x3e,
+	0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0,
+	0x20, 0x20, 0xc0, 0x00, 0xe0, 0x20, 0x20, 0xc0, 0x00, 0xe0, 0x80, 0x40, 0x20, 0x00, 0xc0, 0x20,
+	0x20, 0xc0, 0x00, 0xe0, 0x40, 0x80, 0xe0, 0x00, 0x60, 0x80, 0x00, 0x80, 0x60, 0x00, 0xc0, 0x20,
+	0x20, 0x20, 0xc0, 0x00, 0x20, 0x20, 0xe0, 0x20, 0x20, 0x00, 0xc0, 0x20, 0x20, 0xc0, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3f, 0x3f,
+	0x7f, 0x71, 0xf1, 0xe1, 0xe1, 0xc1, 0xc1, 0xff, 0xf8, 0xff, 0xff, 0xef, 0xf3, 0x71, 0x78, 0x38,
+	0x3f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07,
+	0x01, 0x01, 0x07, 0x00, 0x07, 0x01, 0x01, 0x06, 0x00, 0x07, 0x01, 0x02, 0x04, 0x00, 0x07, 0x01,
+	0x01, 0x07, 0x00, 0x07, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x03, 0x04,
+	0x04, 0x04, 0x03, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x01, 0x01, 0x07, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x03, 0x03, 0x03, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+
+};
+
 static void oled_render_arkan_logo(void) {
-    oled_write_ln_P(PSTR("---------------------"), false);
-    oled_write_ln_P(PSTR("     ARKAN YOTA      "), false);
-    oled_write_ln_P(PSTR("   CORNE KEYBOARD    "), false);
-    oled_write_ln_P(PSTR("---------------------"), false);
+    oled_write_raw_P(right_oled_logo, sizeof(right_oled_logo));
 }
 
 bool oled_task_user(void) {
@@ -581,7 +624,7 @@ bool rgb_matrix_indicators_user(void) {
 
                 keypos_t pos = { .col = col, .row = row };
                 uint16_t keycode = keymap_key_to_keycode(4, pos);
-                
+
                 switch (keycode) {
                     // 1. Teinte (Hue) : affiche la couleur actuelle
                     case RM_HUEU:
@@ -621,7 +664,17 @@ bool rgb_matrix_indicators_user(void) {
                     case MY_RGB_RESET:
                         rgb_matrix_set_color(led, 255, 0, 0);
                         break;
-                    
+
+                    // 5. Touches de test (F13-F18)
+                    case KC_F13:
+                    case KC_F14:
+                    case KC_F15:
+                    case KC_F16:
+                    case KC_F17:
+                    case KC_F18:
+                        // Ne rien faire pour laisser passer la coloration/animation active !
+                        break;
+
                     // 5. Modes et Effets RGB
                     case MY_RGB_RAINBOW: {
                         // Vague arc-en-ciel animée sur cette touche !
@@ -681,5 +734,111 @@ bool rgb_matrix_indicators_user(void) {
     return false;
 }
 #endif
+
+#ifdef RAW_ENABLE
+#include "eeprom.h"
+#include "raw_hid.h"
+
+#define EEPROM_CUSTOM_KEYS_START 700
+
+// Helper to map row/col to a 0..41 key index
+static int get_key_index(uint8_t row, uint8_t col) {
+    if (row < 3) {
+        return row * 6 + col; // Left main: 0..17
+    } else if (row == 3) {
+        if (col >= 3 && col <= 5) {
+            return 18 + (col - 3); // Left thumb: 18..20
+        }
+    } else if (row >= 4 && row < 7) {
+        return 21 + (row - 4) * 6 + col; // Right main: 21..38
+    } else if (row == 7) {
+        if (col >= 3 && col <= 5) {
+            return 39 + (col - 3); // Right thumb: 39..41
+        }
+    }
+    return -1;
+}
+
+// Receive raw HID packets from host
+void raw_hid_receive(uint8_t *data, uint8_t length) {
+    uint8_t command = data[0];
+
+    if (command == 0x01) { // WRITE KEY
+        uint8_t key_idx = data[1];
+        uint16_t keycode = ((uint16_t)data[2] << 8) | data[3];
+
+        if (key_idx < 42) {
+            uint16_t address = EEPROM_CUSTOM_KEYS_START + key_idx * sizeof(uint16_t);
+            eeprom_update_word((uint16_t*)address, keycode);
+
+            uint8_t response[32] = {0};
+            response[0] = 0x01; // WRITE KEY CMD
+            response[1] = key_idx;
+            response[2] = 0x01; // SUCCESS
+            raw_hid_send(response, 32);
+        }
+    }
+    else if (command == 0x02) { // READ CHUNK (10 keys per chunk)
+        uint8_t chunk_idx = data[1];
+
+        if (chunk_idx < 5) {
+            uint8_t response[32] = {0};
+            response[0] = 0x02; // READ CHUNK CMD
+            response[1] = chunk_idx;
+
+            uint8_t start_idx = chunk_idx * 10;
+            uint8_t count = (start_idx + 10 <= 42) ? 10 : (42 - start_idx);
+
+            for (uint8_t i = 0; i < count; i++) {
+                uint8_t key_idx = start_idx + i;
+                uint16_t address = EEPROM_CUSTOM_KEYS_START + key_idx * sizeof(uint16_t);
+                uint16_t keycode = eeprom_read_word((uint16_t*)address);
+
+                // If uninitialized, read from default compiled keymap in Flash
+                if (keycode == 0xFFFF || keycode == 0x0000) {
+                    uint8_t r = 0;
+                    uint8_t c = 0;
+                    if (key_idx < 18) {
+                        r = key_idx / 6;
+                        c = key_idx % 6;
+                    } else if (key_idx >= 18 && key_idx <= 20) {
+                        r = 3;
+                        c = 3 + (key_idx - 18);
+                    } else if (key_idx >= 21 && key_idx <= 38) {
+                        r = 4 + (key_idx - 21) / 6;
+                        c = (key_idx - 21) % 6;
+                    } else if (key_idx >= 39 && key_idx <= 41) {
+                        r = 7;
+                        c = 3 + (key_idx - 39);
+                    }
+                    keycode = keycode_at_keymap_location(5, r, c);
+                }
+
+                response[2 + 2 * i] = (keycode >> 8) & 0xFF;
+                response[2 + 2 * i + 1] = keycode & 0xFF;
+            }
+            raw_hid_send(response, 32);
+        }
+    }
+}
+#endif
+
+// Override default keycode translation
+uint16_t keymap_key_to_keycode(uint8_t layer, keypos_t key) {
+    if (layer == 5) { // Only JEU layer is custom-mappable
+#ifdef RAW_ENABLE
+        int key_idx = get_key_index(key.row, key.col);
+        if (key_idx >= 0 && key_idx < 42) {
+            uint16_t address = EEPROM_CUSTOM_KEYS_START + key_idx * sizeof(uint16_t);
+            uint16_t keycode = eeprom_read_word((uint16_t*)address);
+            if (keycode != 0xFFFF && keycode != 0x0000) {
+                return keycode;
+            }
+        }
+#endif
+    }
+    // Fallback to static layout
+    return keycode_at_keymap_location(layer, key.row, key.col);
+}
 
 
